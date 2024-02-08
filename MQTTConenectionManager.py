@@ -87,11 +87,7 @@ class MQTTConnectionManager:
 
     def publish_to_item(self, item, payload):
         topic = self.topic_publish_base + str(item)
-
-        if self.retain:
-            self.client.publish(topic, payload, self.qos, retain=self.retain)
-        else:
-            self.client.publish(topic, payload, self.qos)
+        self.client.publish(topic, payload, self.qos, retain=self.retain)
 
     def subscribe_to_item(self, item):
         topic = self.topic_subscribe_base + str(item)

@@ -1,0 +1,48 @@
+<text>
+    <welcome>
+        <LINE_1>^start(animations/Stand/Gestures/Excited_1) Hallo zusammen! Ich freue mich Sie hier im Smart Home Labor der Fakultät Informatik an der Hochschule Furtwangen begrüßen zu dürfen. ^wait(animations/Stand/Gestures/Excited_1)</LINE_1>
+        <LINE_2>^start(animations/Stand/Gestures/Explain_1) Wir haben einige Demonstrationen vorbereitet, die Ihnen einen Eindruck von unserer Arbeit in diesem Labor vermitteln. Aber zunächst darf ich Ihnen einige Informationen dazu geben. ^wait(animations/Stand/Gestures/Explain_1)</LINE_2>
+        <LINE_3>^start(animations/Stand/Waiting/ShowSky_10)Das Labor soll der Forschung und der Lehre in einigen Teilbereichen der angewandten Informatik dienen.^wait(animations/Stand/Waiting/ShowSky_10)</LINE_3>
+        <LINE_4>^start(animations/Stand/Gestures/Explain_3)^start(animations/Stand/Gestures/Explain_4)Das sind alles spannende Themen, die mit der Digitalisierung, der Vernetzung, der Sensorik und Automatisierung zu tun haben. Alles das ist sehr wichtig für unsere Absolventinnen und Absolventen, wenn sie später im Umfeld der Industrie 4 Punkt 0 arbeiten wollen.^wait(animations/Stand/Gestures/Explain_3)^wait(animations/Stand/Gestures/Explain_4)</LINE_4>
+        <LINE_5>^start(animations/Stand/Gestures/Explain_5)^start(animations/Stand/Gestures/Explain_6)Das Labor wurde eigenständig von Mitarbeitenden unserer Fakultät geplant. Mit der Ausführung waren lokale Handwerksbetriebe betraut worden. Nun erfolgt Schritt für Schritt die Inbetriebnahme des Labors: Jedes einzelne Gerät muss installiert und in die Netzwerk-Architektur integriert werden. Dann erst können innovative Anwendungsszenarien entwickelt werden.^wait(animations/Stand/Gestures/Explain_5)^wait(animations/Stand/Gestures/Explain_6)</LINE_5>
+    </welcome>
+    <music>
+        <LINE_1>^start(animations/Stand/Emotions/Positive/Happy_4) Netterweise hat eine Projektgruppe mir vor kurzem beigebracht, wie man die Geräte hier bedient. ^wait(animations/Stand/Emotions/Positive/Happy_4)</LINE_1>
+        <LINE_2>^start(animations/Stand/Gestures/Explain_7) Seitdem ist mir nicht mehr so furchtbar langweilig, weil ich zum Beispiel Musik hören kann. ^wait(animations/Stand/Gestures/Explain_7)</LINE_2>
+        <LINE_3>^start(animations/Stand/Emotions/Negative/Exhausted_1) Puuh, das war jetzt aber ganz schön anstrengend. ^wait(animations/Stand/Emotions/Negative/Exhausted_1)</LINE_3>
+    </music>
+    <alexa>
+        <LINE_1>^start(animations/Stand/Gestures/Explain_5) Zur Entspannung unterhalte ich mich erstmal ein bisschen mit einer guten Freundin.^wait(animations/Stand/Gestures/Explain_5)</LINE_1>
+        <LINE_2>Ruhe bitte!</LINE_2>
+        <LINE_3>Alexa ^start(animations/Stand/Waiting/Think_1)</LINE_3>
+        <LINE_4>Wie ist das Wetter?</LINE_4>
+        <LINE_5>^start(animations/Stand/Gestures/Explain_3) Vielen Dank für die Infos! Du bist wie immer topp informiert!</LINE_5>
+        <LINE_6>^start(animations/Stand/Emotions/Positive/Happy_4) Ja, so eine Freundin ist schon toll!^wait(animations/Stand/Emotions/Positive/Happy_4)</LINE_6>
+        <LINE_7>^start(animations/Stand/Gestures/Thinking_4) Aber sie hört immer mit. Manchmal mache ich mir dann Sorgen um meine Privats-Fähre.^wait(animations/Stand/Gestures/Thinking_4)</LINE_7>
+        <LINE_8>^start(animations/Stand/Emotions/Neutral/Confused_1) Ach, da fällt mir ein, ich bin ja ein Roboter, da kann mir das ja egal sein!^wait(animations/Stand/Emotions/Neutral/Confused_1)</LINE_8>
+    </alexa>
+    <roller_shutter>
+        <LINE_1>^start(animations/Stand/Gestures/Explain_7)Natürlich kann ich nicht nur die Musikboxen, sondern auch andere Geräte bedienen.^start(animations/Stand/Gestures/Explain_8)</LINE_1>
+        <LINE_2>Rollladen: Bitte halb herunterfahren.</LINE_2>
+        <LINE_3>^start(animations/Stand/Gestures/Excited_1)Cool, oder? ^wait(animations/Stand/Gestures/Excited_1)</LINE_3>
+        <LINE_4>^start(animations/Stand/Gestures/Explain_8)Ja, das ist schon alles sehr beeindruckend! Aber besonders stolz bin ich auf unsere Studierenden.^wait(animations/Stand/Gestures/Explain_8)</LINE_4>
+        <LINE_5>^start(animations/Stand/Gestures/Explain_9)Sie leisten bereits jetzt wichtige Beiträge für unser Labor, wenn sie in Projekten, in Abschlussarbeiten oder sogar als Hie-Wies schwierige Aufgabenstellungen bearbeiten und manchmal auch richtig schöne Lösungen vorweisen können.^wait(animations/Stand/Gestures/Explain_9)</LINE_5>
+    </roller_shutter>
+    <car_driving_training>
+        <LINE_1>^start(Stand/Gestures/Excited_1) Eine Anwendung gefällt mir besonders gut, nämlich unser Autofahrer-Training. Hierbei kann ich immer prima entspannen. Ich zeige es Ihnen mal kurz ^wait(Stand/Gestures/Excited_1)</LINE_1>
+        <LINE_2>^start(animations/Stand/Gestures/Explain_2) Meine Güte, ganz schön aufregend! Aber gut, dass das alles nur virtu-ell ist und nicht echt! ^wait(animations/Stand/Gestures/Explain_2)</LINE_2>
+        <LINE_3>^start(animations/Stand/Emotions/Positive/Happy_4)  Ach - ich liebe die Informatik! Alles nur Software, da geht so schnell nichts kaputt! ^wait(animations/Stand/Emotions/Positive/Happy_4)</LINE_3>
+    </car_driving_training>
+    <kitchen>
+        <LINE_1>^start(animations/Stand/Gestures/Explain_10) Gleich zeige ich Ihnen noch die Küche. ^wait(animations/Stand/Gestures/Explain_10)</LINE_1>
+        <LINE_2>^start(animations/Stand/Gestures/Explain_7) Bitte lassen Sie mir kurz Zeit hinzufahren. Ich bin ja kein Hochgeschwindigkeits-Roboter ^wait(animations/Stand/Gestures/Explain_7)</LINE_2>
+        <LINE_3>^start(animations/Stand/Gestures/Explain_9) Hier sehen Sie einen wichtigen Raum für die ganzen Menschen hier im Labor - die Küche. ^wait(animations/Stand/Gestures/Explain_9)</LINE_3>
+        <LINE_4>Ich schalte erst einmal das Licht an.</LINE_4>
+        <LINE_5>Während ich mich an meiner Ladestation ausruhe, ^start(animations/Stand/Waiting/Drink_1) trinken die Studierenden hier literweise Kaffee! ^wait(animations/Stand/Waiting/Drink_1)</LINE_5>
+        <LINE_6>Die Geräte sind alle im Netzwerk verfügbar, und wir lernen gerade, sie vernünftig zu steuern.</LINE_6>
+        <LINE_7>Sie können sich vorstellen: dabei muss natürlich die Sicherheit ganz im Vordergrund stehen.</LINE_7>
+    </kitchen>
+    <farewell>
+        <LINE_1>Wir haben hier noch weitere Räume, aber die sollen Ihnen meine menschlichen Kolleginnen und Kollegen zeigen. Ich mache jetzt erst einmal Pause.</LINE_1>
+    </farewell>
+</text>

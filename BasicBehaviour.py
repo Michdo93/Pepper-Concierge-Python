@@ -69,28 +69,47 @@ class BasicBehaviour:
         print("Presentation")
         self.put_head_up()
 
-        if self.__stringToBoolean(self.app_functions_xml.find("WELCOME").text):
-            self.welcome()
+        # Liste der Funktionen, wie sie in der XML-Datei stehen
+        function_list = [
+            ("WELCOME", self.welcome),
+            ("MUSIC", self.music),
+            ("ALEXA", self.alexa),
+            ("ROLLER_SHUTTER", self.roller_shutter),
+            ("CAR_DRIVING_TRAINING", self.car_driving_training),
+            ("KITCHEN", self.kitchen),
+            ("FAREWELL", self.farewell)
+        ]
 
-        if self.__stringToBoolean(self.app_functions_xml.find("MUSIC").text):
-            self.music()
-        
-        if self.__stringToBoolean(self.app_functions_xml.find("ALEXA").text):
-            self.alexa()
+        for function_name, function_method in function_list:
+            if self.__stringToBoolean(self.app_functions_xml.find(function_name).text):
+                function_method()
+                if self.is_last_function(function_list, function_name):
+                    print(f"{function_name} is the last function which will be executed.")
 
-        if self.__stringToBoolean(self.app_functions_xml.find("ROLLER_SHUTTER").text):
-            self.roller_shutter()
-
-        if self.__stringToBoolean(self.app_functions_xml.find("CAR_DRIVING_TRAINING").text):
-            self.car_driving_training()
-
-        if self.__stringToBoolean(self.app_functions_xml.find("KITCHEN").text):
-            self.kitchen()
-
-        if self.__stringToBoolean(self.app_functions_xml.find("FAREWELL").text):
-            self.farewell()
+                    farewell_status = self.__stringToBoolean(self.app_functions_xml.find("FAREWELL").text)
+                    if not farewell_status:
+                        self.finalize_presentation()
 
         self.disconnect_all()
+
+    def is_last_function(self, function_list, current_function_name):
+        """
+        Prüft, ob die aktuelle Funktion die letzte True-Funktion ist.
+        """
+        for function_name, _ in function_list:
+            if function_name == current_function_name:
+                continue  # Überspringe die aktuelle Funktion
+            if self.__stringToBoolean(self.app_functions_xml.find(function_name).text):
+                return False  # Es gibt noch eine andere ausführbare Funktion
+        return True
+
+    def finalize_presentation(self):
+        """
+        Führt Aktionen aus, wenn die Präsentation abgeschlossen ist.
+        """
+        print("Alle Funktionen wurden ausgeführt. Abschluss der Präsentation.")
+        self.say_lines(["Vielen Dank für eure Aufmerksamkeit!"])
+        self.put_head_up()
 
     def welcome(self):
         print("Welcome")

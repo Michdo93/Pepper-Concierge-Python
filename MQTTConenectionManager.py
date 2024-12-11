@@ -52,14 +52,14 @@ class MQTTConnectionManager:
         if self.broker_user == "" or self.broker_user == None:
             self.auth = None
 
+        self.broker_tls = None  # Standardinitialisierung
+
         if self.broker_port != 1883:
-            if self.tls_path is not None or self.tls_path != "":
-                if self.tls_version is not None or self.tls_version != "":
+            if self.tls_path is not None and self.tls_path != "":
+                if self.tls_version is not None and self.tls_version != "":
                     self.broker_tls = (self.tls_path, self.tls_version)
                 else:
                     self.broker_tls = self.tls_path
-            else:
-                self.broker_tls = None
 
         self.client = mqtt.Client(self.client_id, clean_session=True, userdata=None, protocol=mqtt.MQTTv311, transport=self.broker_transport)
 

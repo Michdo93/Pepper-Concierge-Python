@@ -52,14 +52,15 @@ class MQTTConnectionManager:
         if self.broker_user == "" or self.broker_user == None:
             self.auth = None
 
-        self.broker_tls = None  # Standardinitialisierung
-
-        if self.broker_port != 1883:
-            if self.tls_path is not None and self.tls_path != "":
-                if self.tls_version is not None and self.tls_version != "":
-                    self.broker_tls = (self.tls_path, self.tls_version)
-                else:
-                    self.broker_tls = self.tls_path
+        tls_version_str = root.find('MQTT_TLS_VERSION').text
+        if tls_version_str is None:
+           self.tls_version = None
+        elif tls_version_str == "1.2":
+            self.tls_version = ssl.PROTOCOL_TLSv1_2
+        elif tls_version_str == "1.3":
+            self.tls_version = ssl.PROTOCOL_TLSv1_3
+        else:
+            self.tls_version = None
 
         self.client = mqtt.Client(self.client_id, clean_session=True, userdata=None, protocol=mqtt.MQTTv311, transport=self.broker_transport)
 
@@ -117,3 +118,4 @@ class MQTTConnectionManager:
 
     def disconnect(self):
         self.client.disconnect()
+

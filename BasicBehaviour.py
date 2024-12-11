@@ -84,7 +84,7 @@ class BasicBehaviour:
             if self.__stringToBoolean(self.app_functions_xml.find(function_name).text):
                 function_method()
                 if self.is_last_function(function_list, function_name):
-                    print(f"{function_name} is the last function which will be executed.")
+                    print("{} is the last function which will be executed.".format("function_name))
 
                     farewell_status = self.__stringToBoolean(self.app_functions_xml.find("FAREWELL").text)
                     if not farewell_status:

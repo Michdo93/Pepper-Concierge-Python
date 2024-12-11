@@ -87,7 +87,7 @@ class MQTTConnectionManager:
             print("Verbunden mit dem MQTT-Broker. Verbindungsergebniscode:", rc)
             # Fügen Sie hier weitere Aktionen nach erfolgreicher Verbindung hinzu
             # Zum Beispiel können Sie sich zu bestimmten Topics subscriben
-            self.client.subscribe(self.topic_subscribe_base + "#", self.qos)
+            self.client.subscribe(self.topic_subscribe_base + "#", self.broker_qos)
         else:
             print("Verbindung zum MQTT-Broker fehlgeschlagen. Rückgabewert:", rc)
 
@@ -97,11 +97,11 @@ class MQTTConnectionManager:
 
     def publish_to_item(self, item, payload):
         topic = self.topic_publish_base + str(item)
-        self.client.publish(topic, payload, self.qos, retain=self.retain)
+        self.client.publish(topic, payload, self.broker_qos, retain=self.retain)
 
     def subscribe_to_item(self, item):
         topic = self.topic_subscribe_base + str(item)
-        self.client.subscribe(topic, self.qos)
+        self.client.subscribe(topic, self.broker_qos)
 
     def subscribe_to_items(self, items):
         for item in items:
@@ -117,4 +117,3 @@ class MQTTConnectionManager:
 
     def disconnect(self):
         self.client.disconnect()
-

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import paho.mqtt.client as mqtt
 import xml.etree.ElementTree as ET
+import ssl  # Sicherstellen, dass `ssl` importiert ist
 
 class MQTTConnectionManager:
     def __init__(self, delegate):
@@ -14,7 +15,16 @@ class MQTTConnectionManager:
         self.broker_port = int(root.find('MQTT_BROKER_PORT').text)
         self.client_id = root.find('MQTT_CLIENT_ID').text
         self.tls_path = root.find('MQTT_BROKER_IP').text
-        self.tls_version = int(root.find('MQTT_TLS_VERSION').text)
+        # self.tls_version = int(root.find('MQTT_TLS_VERSION').text)
+
+        tls_version_str = root.find('MQTT_TLS_VERSION').text
+        if tls_version_str == "1.2":
+            self.tls_version = ssl.PROTOCOL_TLSv1_2
+        elif tls_version_str == "1.3":
+            self.tls_version = ssl.PROTOCOL_TLSv1_3
+        else:
+            raise ValueError("Unsupported TLS version specified in config: " + tls_version_str)
+
         self.broker_user = root.find('MQTT_BROKER_USER').text
         self.broker_password = root.find('MQTT_BROKER_PASSWORD').text
         self.broker_qos = int(root.find('MQTT_BROKER_QOS').text)

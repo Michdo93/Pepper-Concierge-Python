@@ -289,12 +289,12 @@ class BasicBehaviour:
 
             # Licht anschalten
             if self.__stringToBoolean(self.app_config_xml.find("LAMPS_INDIVIDUALLY").text):
-                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_1_Switch").text, "ON")
-                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_2_Switch").text, "ON")
-                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_3_Switch").text, "ON")
-                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_4_Switch").text, "ON")
+                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_1_SWITCH").text, "ON")
+                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_2_SWITCH").text, "ON")
+                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_3_SWITCH").text, "ON")
+                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_4_SWITCH").text, "ON")
             else:
-                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_Switch").text, "ON")
+                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_SWITCH").text, "ON")
             
             time.sleep(2)
 
@@ -316,12 +316,12 @@ class BasicBehaviour:
             self.motion.moveTo(-1.0, 0.0, 0.0)
 
             if self.__stringToBoolean(self.app_config_xml.find("LAMPS_INDIVIDUALLY").text):
-                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_1_Switch").text, "OFF")
-                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_2_Switch").text, "OFF")
-                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_3_Switch").text, "OFF")
-                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_4_Switch").text, "OFF")
+                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_1_SWITCH").text, "OFF")
+                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_2_SWITCH").text, "OFF")
+                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_3_SWITCH").text, "OFF")
+                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_4_SWITCH").text, "OFF")
             else:
-                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_Switch").text, "OFF")
+                self.mqtt_connection_manager.publish_to_item(topics.find("HUE_SWITCH").text, "OFF")
 
             self.motion.rest()
         except Exception as ex:

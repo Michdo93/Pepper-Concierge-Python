@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import paho.mqtt.client as mqtt
 import xml.etree.ElementTree as ET
+import ssl  # Sicherstellen, dass `ssl` importiert ist
 
 class MQTTConnectionManager:
     def __init__(self, delegate):
@@ -14,7 +15,16 @@ class MQTTConnectionManager:
         self.broker_port = int(root.find('MQTT_BROKER_PORT').text)
         self.client_id = root.find('MQTT_CLIENT_ID').text
         self.tls_path = root.find('MQTT_BROKER_IP').text
-        self.tls_version = int(root.find('MQTT_TLS_VERSION').text)
+        # self.tls_version = int(root.find('MQTT_TLS_VERSION').text)
+
+        tls_version_str = root.find('MQTT_TLS_VERSION').text
+        if tls_version_str == "1.2":
+            self.tls_version = ssl.PROTOCOL_TLSv1_2
+        elif tls_version_str == "1.3":
+            self.tls_version = ssl.PROTOCOL_TLSv1_3
+        else:
+            raise ValueError("Unsupported TLS version specified in config: " + tls_version_str)
+
         self.broker_user = root.find('MQTT_BROKER_USER').text
         self.broker_password = root.find('MQTT_BROKER_PASSWORD').text
         self.broker_qos = int(root.find('MQTT_BROKER_QOS').text)
@@ -42,9 +52,17 @@ class MQTTConnectionManager:
         if self.broker_user == "" or self.broker_user == None:
             self.auth = None
 
-        if not isinstance(tls_version, int):
-            tls_version = None
+        tls_version_str = root.find('MQTT_TLS_VERSION').text
+        if tls_version_str is None:
+           self.tls_version = None
+        elif tls_version_str == "1.2":
+            self.tls_version = ssl.PROTOCOL_TLSv1_2
+        elif tls_version_str == "1.3":
+            self.tls_version = ssl.PROTOCOL_TLSv1_3
+        else:
+            self.tls_version = None
 
+        self.broker_tls = None
         if self.broker_port != 1883:
             if self.tls_path is not None or self.tls_path != "":
                 if self.tls_version is not None or self.tls_version != "":
@@ -54,7 +72,7 @@ class MQTTConnectionManager:
             else:
                 self.broker_tls = None
 
-        self.client = mqtt.Client(self.client_id, clean_session=True, userdata=None, protocol=mqtt.MQTTv311, transport=self.broker_transport)
+        self.client = mqtt.Client(self.client_id, clean_session=True, userdata=None, protocol=mqtt.MQTTv311, transport=self.broker_transport)        
 
         if self.broker_tls is not None:
             self.client.tls_set(self.broker_tls)
@@ -80,7 +98,7 @@ class MQTTConnectionManager:
             print("Verbunden mit dem MQTT-Broker. Verbindungsergebniscode:", rc)
             # Fügen Sie hier weitere Aktionen nach erfolgreicher Verbindung hinzu
             # Zum Beispiel können Sie sich zu bestimmten Topics subscriben
-            self.client.subscribe(self.topic_subscribe_base + "#", self.qos)
+            self.client.subscribe(self.topic_subscribe_base + "#", self.broker_qos)
         else:
             print("Verbindung zum MQTT-Broker fehlgeschlagen. Rückgabewert:", rc)
 
@@ -90,11 +108,11 @@ class MQTTConnectionManager:
 
     def publish_to_item(self, item, payload):
         topic = self.topic_publish_base + str(item)
-        self.client.publish(topic, payload, self.qos, retain=self.retain)
+        self.client.publish(topic, payload, self.broker_qos, retain=self.retain)
 
     def subscribe_to_item(self, item):
         topic = self.topic_subscribe_base + str(item)
-        self.client.subscribe(topic, self.qos)
+        self.client.subscribe(topic, self.broker_qos)
 
     def subscribe_to_items(self, items):
         for item in items:
